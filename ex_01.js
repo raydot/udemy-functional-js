@@ -5,6 +5,8 @@ var currentUser = 0,
     { name: "Henry", score: 80, tries: 3 },
   ];
 
+var userStack = [users];
+
 var updateScore = function (newAmt) {
   users[currentUser].score += newAmt;
 };
