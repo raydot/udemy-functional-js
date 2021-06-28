@@ -1,9 +1,8 @@
-var currentUser = 0,
-  users = [
-    { name: "James", score: 30, tries: 1 },
-    { name: "Mary", score: 110, tries: 4 },
-    { name: "Henry", score: 80, tries: 3 },
-  ];
+var users = [
+  { name: "James", score: 30, tries: 1 },
+  { name: "Mary", score: 110, tries: 4 },
+  { name: "Henry", score: 80, tries: 3 },
+];
 
 var userStack = [users];
 
@@ -78,4 +77,49 @@ console.log(users);
 //console.log(users.find((x) => x.name === "James"));
 //console.log(users.indexOf(users.find((item) => item.name === "Henry")));
 updateUsers({ name: "Henry", tries: 123 });
+console.log(users);
+
+/**
+ * Solutuon
+ */
+//Modifies Data
+var storeUser = function (arr, user) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name.toLowerCase() === user.name.toLowerCase()) {
+      arr[i] = user;
+      break;
+    }
+  }
+};
+
+// PURE FUNCTIONS
+var getUser = function (arr, name) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].name.toLowerCase() === name.toLowerCase()) {
+      return arr[i];
+    }
+  }
+  return null;
+};
+
+var updateScore2 = function (user, newAmt) {
+  if (user) {
+    user.score += newAmt;
+    return usr;
+  }
+};
+
+var updateTries2 = function (user, newAmt) {
+  if (user) {
+    user.tries++;
+    return usr;
+  }
+};
+
+///TESTS
+let usr = getUser(users, "Henry");
+let usr1 = updateScore2(usr, 30);
+let usr2 = updateTries2(usr1);
+storeUser(usr2);
+
 console.log(users);
