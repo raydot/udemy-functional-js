@@ -8,25 +8,34 @@ var currentUser = 0,
 var userStack = [users];
 
 // This is going to be the one impure function:
-const updateUsers = (name, score = 0, tries = 0) => {
+const updateUsers = ({ name = 0, score = 0, tries = 0 }) => {
   //console.log("rest:", rest);
   //console.log("tos", typeof score, "tot", typeof tries);
-  console.log(score);
-  console.log(tries);
-  if (!score === 0) {
-    console.log("Score:");
-    console.log(getKeyByValue(users, name));
+  //console.log("name:", name);
+  //console.log("score:", score);
+  //console.log("tries:", tries);
+  //console.log("users[name]:", users);
+
+  if (name === 0) {
+    // doesn't work without a name
+    return false;
   }
-  if (!tries === 0) {
-    console.log("Tries:");
-    console.log(getKeyByValue(users, name));
+  let itemToChange = users.find((item) => item.name === name);
+  let itemIndex = users.indexOf(itemToChange);
+  if (score !== 0) {
+    itemToChange.score = score;
   }
+  if (tries !== 0) {
+    itemToChange.tries = tries;
+  }
+
+  users[itemIndex] = itemToChange;
 };
 
 // FROM https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
-function getKeyByValue(object, value) {
-  return Object.keys(object).find((key) => object[key] === value);
-}
+// const getKeyByValue = (object, value) => {
+//   return Object.keys(object).find((key) => object[key] === value);
+// };
 
 /**
  * USAGE
@@ -35,27 +44,19 @@ function getKeyByValue(object, value) {
 *  console.log(getKeyByValue(map,"2"));
  */
 
-// Not pure, has side effects.
 var updateScore = function (name, newAmt) {
-  // users[currentUser].score += newAmt;
   return users[name].score + newAmt;
 };
-
-// Not necessary now what we're not using namespace pattern
-// var returnUsers = function () {
-//   return users;
-// };
 
 // Not pure
 var updateTries = function () {
   return users[currentUser].tries + 1;
-  // users[currentUser].trues++;
 };
 
 // Not pure
-var updateUser = function (newUser) {
-  currentUser = newUser;
-};
+// var updateUser = function (newUser) {
+//   currentUser = newUser;
+// };
 
 // console.log(returnUsers());
 // updateScore(20);
@@ -70,5 +71,11 @@ var updateUser = function (newUser) {
  */
 
 // TESTS
-updateUsers("James", { score: 20 });
-updateUsers("Henry", { tries: 1 });
+updateUsers({ name: "Mary", score: 20, tries: 8 });
+//updateUsers({ name: "Henry", tries: 5 });
+//updateUsers({ score: 11, tries: 1 });
+console.log(users);
+//console.log(users.find((x) => x.name === "James"));
+//console.log(users.indexOf(users.find((item) => item.name === "Henry")));
+updateUsers({ name: "Henry", tries: 123 });
+console.log(users);
