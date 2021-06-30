@@ -57,3 +57,6 @@ console.log("usr2:", usr2, "\n");
 
 storeUser(users, usr2);
 console.log("usr:", users);
+
+// Original answer was incredibly convoluted, fixed pretty quickly with the addition of cloneObj()
+// Simplify!
