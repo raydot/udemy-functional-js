@@ -1,4 +1,4 @@
-var users = [
+const users = [
   { name: "James", score: 30, tries: 1 },
   { name: "Mary", score: 110, tries: 4 },
   { name: "Henry", score: 80, tries: 3 },
@@ -15,6 +15,10 @@ var storeUser = function (arr, user) {
 };
 
 // Pure Functions
+const cloneObj = function (obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
 var getUser = function (arr, name) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].name.toLowerCase() === name.toLowerCase()) {
@@ -40,5 +44,16 @@ var updateTries = function (user) {
 
 // Each of the users shows the modification, but are referencing the same object.
 let usr = getUser(users, "Henry");
-let usr1 = updateScore(usr, 30);
-let usr2 = updateTries(usr1);
+console.log("usr:", usr, "\n");
+
+let usr1 = updateScore(cloneObj(usr), 30);
+console.log("usr:", usr);
+console.log("usr1:", usr1, "\n");
+
+let usr2 = updateTries(cloneObj(usr1));
+console.log("usr:", usr);
+console.log("usr1:", usr1);
+console.log("usr2:", usr2, "\n");
+
+storeUser(users, usr2);
+console.log("usr:", users);

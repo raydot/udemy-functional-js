@@ -22,5 +22,6 @@ var newTries = function (arr, name) {
   return arr;
 };
 
+// Make changes so that you get a new array.
 var newArray1 = newScore(users, "Henry", 30);
 var newArray2 = newTries(users, "Henry");
