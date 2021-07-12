@@ -60,3 +60,10 @@ console.log("usr:", users);
 
 // Original answer was incredibly convoluted, fixed pretty quickly with the addition of cloneObj()
 // Simplify!
+
+/**
+ * Also: research showed that JSON.parse(JSON.stringify(foo)) has limitations!
+ * It will not copy all data types: https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript/122704#122704
+ * Lodash has a function cloneDeep() https://lodash.com/docs/4.17.15#cloneDeep
+ * rfdc is faster than cloneDeep() https://github.com/davidmarkclements/rfdc
+ */
